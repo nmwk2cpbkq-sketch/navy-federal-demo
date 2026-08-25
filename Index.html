@@ -1,1 +1,387 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navvy Federal | Demo</title>
+  <style>
+    :root{
+      --navy:#082b63;
+      --blue:#124fa3;
+      --light:#eef5ff;
+      --ink:#10294d;
+      --muted:#61728c;
+      --white:#fff;
+      --border:#d7e1ef;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--ink);
+      background:#f5f8fc;
+    }
+
+    .hero{
+      min-height:540px;
+      color:#fff;
+      background:
+        linear-gradient(100deg,rgba(5,31,76,.97),rgba(8,43,99,.92)),
+        linear-gradient(135deg,#0a2e68,#0b4b98);
+      padding:22px 20px 170px;
+    }
+
+    .topbar,.content,.login-card,.security,.quick,.footer-inner{
+      width:min(100%,1100px);
+      margin:auto;
+    }
+
+    .topbar{display:flex;align-items:center;justify-content:space-between}
+
+    .brand{display:flex;gap:12px;align-items:center;font-weight:800;letter-spacing:1px}
+
+    .brand-mark{
+      width:48px;height:48px;border:2px solid #fff;border-radius:50%;
+      display:grid;place-items:center;font-size:24px;
+    }
+
+    .brand small{display:block;font-size:10px;letter-spacing:3px;opacity:.85}
+
+    .menu{
+      border:1px solid rgba(255,255,255,.5);
+      border-radius:10px;
+      padding:9px 13px;
+      background:transparent;
+      color:#fff;
+      font-size:16px
+    }
+
+    .content{padding-top:80px}
+
+    h1{
+      font-size:clamp(42px,7vw,72px);
+      line-height:1.03;
+      margin:0 0 18px;
+      max-width:680px
+    }
+
+    .hero p{
+      font-size:clamp(18px,2.5vw,25px);
+      line-height:1.5;
+      max-width:640px;
+      margin:0;
+      color:#dbe8ff
+    }
+
+    .main{margin-top:-110px;padding:0 20px 40px}
+
+    .login-card,.security{
+      background:#fff;
+      border-radius:28px;
+      padding:30px;
+      box-shadow:0 18px 45px rgba(13,37,78,.16);
+    }
+
+    .card-title{display:flex;gap:16px;align-items:center;margin-bottom:24px}
+
+    .icon{
+      width:56px;height:56px;border-radius:16px;background:var(--light);
+      display:grid;place-items:center;font-size:25px;
+    }
+
+    .card-title h2{margin:0;font-size:27px}
+
+    .card-title p{margin:4px 0 0;color:var(--muted)}
+
+    .field{margin:12px 0}
+
+    input{
+      width:100%;
+      padding:18px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      font-size:17px;
+      outline:none;
+    }
+
+    input:focus{
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(18,79,163,.12)
+    }
+
+    .options{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:center;
+      margin:18px 0;
+      flex-wrap:wrap
+    }
+
+    .options label{color:var(--ink)}
+
+    a{
+      color:var(--blue);
+      font-weight:650;
+      text-decoration:none
+    }
+
+    .signin{
+      width:100%;
+      border:0;
+      border-radius:14px;
+      padding:17px;
+      background:var(--blue);
+      color:#fff;
+      font-size:20px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .divider{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      color:var(--muted);
+      margin:25px 0
+    }
+
+    .divider:before,.divider:after{
+      content:"";
+      height:1px;
+      background:var(--border);
+      flex:1
+    }
+
+    .bio{
+      width:100%;
+      padding:15px;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:14px;
+      color:var(--blue);
+      font-size:18px;
+      font-weight:750;
+      cursor:pointer;
+    }
+
+    .notice{
+      display:none;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:10px;
+      background:#eef7ee;
+      color:#1d6a2d
+    }
+
+    .security{
+      margin-top:24px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      background:#edf4ff;
+      box-shadow:none
+    }
+
+    .security h3{margin:0 0 6px}
+
+    .security p{
+      margin:0;
+      color:#455a78;
+      line-height:1.5
+    }
+
+    .quick{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      background:#fff;
+      border-radius:24px;
+      margin-top:24px;
+      padding:20px;
+      box-shadow:0 8px 25px rgba(13,37,78,.08)
+    }
+
+    .quick div{
+      text-align:center;
+      padding:15px;
+      border-right:1px solid var(--border)
+    }
+
+    .quick div:last-child{border-right:0}
+
+    .quick span{font-size:32px}
+
+    .quick h3{margin:8px 0 4px}
+
+    .quick p{
+      margin:0;
+      color:var(--muted)
+    }
+
+    footer{
+      background:#061e45;
+      color:#d9e4f5;
+      padding:34px 20px;
+      text-align:center
+    }
+
+    .links{
+      display:flex;
+      justify-content:center;
+      gap:22px;
+      flex-wrap:wrap;
+      margin-bottom:20px
+    }
+
+    .links a{color:#d9e4f5}
+
+    @media(max-width:700px){
+      .hero{padding-bottom:140px}
+      .content{padding-top:55px}
+      .quick{grid-template-columns:repeat(2,1fr)}
+      .quick div:nth-child(2){border-right:0}
+      .quick div:nth-child(-n+2){border-bottom:1px solid var(--border)}
+      .login-card,.security{padding:22px}
+      .card-title h2{font-size:23px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-mark">✦</div>
+        <div>NAVVY<br>FEDERAL <small>CREDIT UNION</small></div>
+      </div>
+
+      <button class="menu" onclick="showMenu()">☰ Menu</button>
+    </div>
+
+    <div class="content">
+      <h1>Banking for those who move forward.</h1>
+      <p>Simple, secure tools to help you manage your money and plan for what comes next.</p>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="login-card">
+      <div class="card-title">
+        <div class="icon">🔒</div>
+        <div>
+          <h2>Secure Demo Sign In</h2>
+          <p>Access your demo account</p>
+        </div>
+      </div>
+
+      <form id="loginForm">
+        <div class="field">
+          <input id="username" type="text" placeholder="Username" autocomplete="off" required>
+        </div>
+
+        <div class="field">
+          <input id="password" type="password" placeholder="Password" autocomplete="off" required>
+        </div>
+
+        <div class="options">
+          <label><input type="checkbox"> Save username</label>
+          <a href="#" onclick="alert('Demo link — password recovery is not connected.')">
+            Forgot username or password?
+          </a>
+        </div>
+
+        <button class="signin" type="submit">SIGN IN</button>
+      </form>
+
+      <div class="divider">or</div>
+
+      <button class="bio" onclick="demoBiometric()">
+        ☝ Sign in with Biometrics
+      </button>
+
+      <div id="notice" class="notice"></div>
+    </section>
+
+    <section class="security">
+      <div class="icon">🛡️</div>
+      <div>
+        <h3>We’ve Got Your Back</h3>
+        <p>Fraud protection and security tools help keep your information protected.</p>
+      </div>
+    </section>
+
+    <section class="quick">
+      <div>
+        <span>💳</span>
+        <h3>Accounts</h3>
+        <p>View balances and activity</p>
+      </div>
+
+      <div>
+        <span>↔️</span>
+        <h3>Transfers</h3>
+        <p>Move money with ease</p>
+      </div>
+
+      <div>
+        <span>🧾</span>
+        <h3>Pay & Deposit</h3>
+        <p>Pay bills and deposit checks</p>
+      </div>
+
+      <div>
+        <span>◔</span>
+        <h3>Planning</h3>
+        <p>Plan for your financial goals</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="links">
+        <a href="#">Rates</a>
+        <a href="#">Locations</a>
+        <a href="#">Support</a>
+        <a href="#">Privacy & Security</a>
+      </div>
+
+      <p>
+        <strong>Navvy Federal</strong> is a fictional demo credit union website.
+        No real accounts or banking credentials are used.
+      </p>
+
+      <p>© 2026 Navvy Federal Demo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const notice = document.getElementById("notice");
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      notice.style.display = "block";
+      notice.textContent =
+        "Demo sign-in successful. This page does not store or transmit your credentials.";
+
+      this.reset();
+    });
+
+    function demoBiometric() {
+      notice.style.display = "block";
+      notice.textContent =
+        "Demo biometric sign-in activated. No biometric data is collected.";
+    }
+
+    function showMenu() {
+      alert(
+        "Demo menu: Accounts • Transfers • Pay & Deposit • Planning • Support"
+      );
+    }
+  </script>
+</body>
+</html>
